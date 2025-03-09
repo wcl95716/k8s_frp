@@ -1,0 +1,19 @@
+# 服务监听的端口（客户端通过这个端口连接到 FRPS）
+bindPort = 7000
+
+# Web Dashboard 访问端口（用于管理面板）
+webServer.addr = "0.0.0.0"
+webServer.port = 7500
+webServer.user = "admin"
+webServer.password = "admin123"
+
+# 身份认证
+# 身份认证方式
+auth.method = "token"
+# 身份认证的密钥
+auth.token = "test-token"
+
+
+# 日志配置（可选）
+log.to = "console"
+log.level = "info"
