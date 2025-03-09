@@ -9,5 +9,5 @@ services:
       - "7001:7000"   # FRP 连接端口
       - "7500:7500"   # Web Dashboard 端口
     volumes:
-      - ./frps.toml:/etc/frp/frps.toml
-    command: ["-c", "/etc/frp/frps.toml"]
+      - ./frps.ini:/etc/frp/frps.ini
+    command: ["-c",  "/etc/frp/frps.ini"]
