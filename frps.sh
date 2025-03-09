@@ -7,21 +7,23 @@ DASHBOARD_PORT="7500"          # FRP 面板端口
 TOKEN="frp-secret"             # 通信密钥
 DASHBOARD_USER="admin"         # 控制面板用户名
 DASHBOARD_PASSWORD="admin123"  # 控制面板密码
-INSTALL_DIR="./"         # 安装目录
+INSTALL_DIR="$(pwd)/frps_server"  # 安装目录为当前文件夹下的 frps_server
 
 # ========================== 开始安装 ==========================
 set -e
 
+# 创建安装目录
+mkdir -p "$INSTALL_DIR"
+
 # 1. 下载 FRP
 echo "📥 正在下载 FRP 版本 $FRP_VERSION..."
 wget -q https://github.com/fatedier/frp/releases/download/v${FRP_VERSION}/frp_${FRP_VERSION}_linux_amd64.tar.gz -O /tmp/frp.tar.gz
-mkdir -p $INSTALL_DIR
 tar -xzf /tmp/frp.tar.gz -C /tmp
-cp -r /tmp/frp_${FRP_VERSION}_linux_amd64/* $INSTALL_DIR
+cp -r /tmp/frp_${FRP_VERSION}_linux_amd64/* "$INSTALL_DIR"
 rm -rf /tmp/frp*
 
 # 2. 创建配置文件
-cat > $INSTALL_DIR/frps.ini <<EOF
+cat > "$INSTALL_DIR/frps.ini" <<EOF
 [common]
 bind_port = ${FRP_PORT}
 dashboard_port = ${DASHBOARD_PORT}
@@ -37,7 +39,7 @@ Description=FRP Server
 After=network.target
 
 [Service]
-ExecStart=$INSTALL_DIR/frps -c $INSTALL_DIR/frps.ini
+ExecStart=${INSTALL_DIR}/frps -c ${INSTALL_DIR}/frps.ini
 Restart=always
 User=root
 
