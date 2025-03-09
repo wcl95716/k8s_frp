@@ -7,7 +7,7 @@ services:
     restart: always
     network_mode: host
     ports:
-      - "7001:7000"   # FRP 连接端口
+      - "7000:7000"   # FRP 连接端口
       - "7500:7500"   # Web Dashboard 端口
     volumes:
       - ./frps.ini:/etc/frp/frps.ini
