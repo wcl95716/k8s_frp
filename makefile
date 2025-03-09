@@ -7,3 +7,7 @@ stop:
 
 run:
 	docker compose up -d
+
+stop_frps:
+	systemctl stop  frps
+	systemctl disable frps

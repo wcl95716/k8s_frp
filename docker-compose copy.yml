@@ -2,7 +2,7 @@ version: '3.8'
 
 services:
   frps:
-    image: ghcr.io/fatedier/frps:v0.53.0
+    image: ghcr.io/fatedier/frps:v0.61.2
     container_name: frps
     restart: always
     ports:
